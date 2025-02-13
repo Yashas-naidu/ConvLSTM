@@ -8,7 +8,7 @@ This document provides step-by-step instructions for setting up the environment,
    ```sh
    conda create -p venv python=3.12.8 -y
    ```
-   **Note:** Ensure that Python 3.12.8 is installed on your system.
+   **Note:** Ensure that Python 3.12.8 was the version i had in my case,but u can replace with your version.
 
 2. **Activate the Environment**
    ```sh
@@ -38,9 +38,9 @@ You can customize the number of epochs and batch size as per your requirements b
 ### Model Checkpoints
 
 - The trained model is saved in the current directory in the following format:
-  ```
-  checkpoint_<epoch>_<loss>.pth.tar
-  ```
+  
+  *checkpoint_<epoch>_<loss>.pth.tar*
+  
 - It is recommended to use a checkpoint with the lowest validation loss for better predictions.
 
 ## Generating Predictions
@@ -49,7 +49,7 @@ To generate predictions, load the desired checkpoint and run:
    ```sh
    python prediction.py
    ```
-
+![](https://github.com/Yashas-naidu/ConvLSTM/blob/main/images/movingmnist.png)
 ## Viewing Logs in TensorBoard
 
 Logs for **Epoch vs Loss** are stored inside the `runs` directory. To visualize them using TensorBoard, execute:
