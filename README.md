@@ -19,7 +19,11 @@ This document provides step-by-step instructions for setting up the environment,
    ```sh
    pip install -r requirements.txt
    ```
-
+4. Download the pytorch package from [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
+   In my  case :
+   ```sh
+   pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
 ## Loading MovingMnist Data
 
 To load the MovingMNIST dataset from the gzip file, use the following command:
