@@ -14,7 +14,7 @@ def load_mnist(root):
         mnist = np.frombuffer(f.read(), np.uint8, offset=16)
         mnist = mnist.reshape(-1, 28, 28)
     return mnist
-
+ 
 
 def load_fixed_set(root, is_train):
     # Load the fixed dataset

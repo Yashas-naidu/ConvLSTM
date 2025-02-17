@@ -15,6 +15,19 @@ from tqdm import tqdm
 import numpy as np
 from tensorboardX import SummaryWriter
 import argparse
+import requests
+import time
+
+# Logflare API Details
+LOGFLARE_API_URL = "https://api.logflare.app/logs/json"
+SOURCE_ID = "30e4cb4a-5cd1-4ee0-9608-8425761c9ae2"  # Replace with your Source ID
+API_KEY = "aZqkXqnz5baG"  # Replace with your API Key
+
+# HTTP Headers
+headers = {
+    "Content-Type": "application/json; charset=utf-8",
+    "X-API-KEY": API_KEY
+}
 
 TIMESTAMP = "2020-03-09T00-00-00"
 parser = argparse.ArgumentParser()
@@ -80,6 +93,21 @@ if args.convgru:
 else:
     encoder_params = convgru_encoder_params
     decoder_params = convgru_decoder_params
+
+
+def send_log_to_logflare(epoch, train_loss, valid_loss):
+    log_payload = [
+        {
+            "epoch": epoch,
+            "train_loss": train_loss,
+            "valid_loss": valid_loss
+        }
+    ]
+    
+    response = requests.post(f"{LOGFLARE_API_URL}?source={SOURCE_ID}", json=log_payload, headers=headers)
+    
+    print(f"Logflare Response Status Code: {response.status_code}")
+    print(f"Logflare Response Message: {response.text}")
 
 
 def train():
@@ -189,6 +217,8 @@ def train():
                      f'valid_loss: {valid_loss:.6f}')
 
         print(print_msg)
+        # Send log to Logflare
+        send_log_to_logflare(epoch, train_loss, valid_loss)
         # clear lists to track next epoch
         train_losses = []
         valid_losses = []
