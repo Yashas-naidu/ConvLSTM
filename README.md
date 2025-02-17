@@ -28,7 +28,7 @@ This document provides step-by-step instructions for setting up the environment,
 
 To load the MovingMNIST dataset from the gzip file, use the following command:
    ```sh
-   python mm.py
+   python data/mm.py
    ```
 
 ## Training the Model
